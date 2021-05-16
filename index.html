@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://ten-marshy-quarter.glitch.me/ -->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" href="styles/examples.css" rel="stylesheet">
+<title>&lt;model-viewer&gt; Augmented Reality</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
+</script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+  <body>
+
+    <div id="webXR" class="demo">
+<model-viewer src="assets/beruska.glb"
+poster="assets/mravenec.png"
+shadow-intensity="1"
+ar=""
+ar-scale="fixed"
+camera-controls=""
+alt="A 3D model carousel"
+data-js-focus-visible="" >
+<audio controls id="audio" >
+  <!-- <source src="assets/bread.mp3" type="audio/ogg"> -->
+  <source src="assets/mravenec.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<button slot="ar-button" id="ar-button">
+View in AR
+</button>
+<div id="ar-prompt">
+  <img src="assets/prompt.png">
+</div>
+
+<div class="slider">
+  <div class="slides">
+    <button class="slide selected" onclick="switchSrc(this, &#39;mravenec&#39;)" style="background-image: url(&#39;assets/mravenec.png&#39;);">
+      <div class="translate">die Ameise</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;netopyr&#39;)" style="background-image: url(&#39;assets/netopyr.png&#39;);">
+      <div class="translate">die Fledermaus</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;ropucha&#39;)" style="background-image: url(&#39;assets/ropucha.png&#39;);">
+        <div class="translate">die Kröte</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;slimak&#39;)" style="background-image: url(&#39;assets/slimak.png&#39;);">
+        <div class="translate">die Nacktschnecke</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;tulen&#39;)" style="background-image: url(&#39;assets/tulen.png&#39;);">
+      <div class="translate">die Hundsrobbe</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;vazka&#39;)" style="background-image: url(&#39;assets/vazka.png&#39;);">
+      <div class="translate">die Libelle</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;vcela&#39;)" style="background-image: url(&#39;assets/vcela.png&#39;);">
+      <div class="translate">die Biene</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;veverka&#39;)" style="background-image: url(&#39;assets/veverka.png&#39;)">
+        <div class="translate">das Eichhörnchen</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;zelva&#39;)" style="background-image: url(&#39;assets/zelva.png&#39;);">
+            <div class="translate">die Schildkröte</div>
+    </button>
+    <button class="slide" onclick="switchSrc(this, &#39;zralok&#39;)" style="background-image: url(&#39;assets/zralok.png&#39;);">
+      <div class="translate">der Haifisch</div>
+    </button>
+</div>
+</div>
+</model-viewer>
+
+<script type="module">
+const modelViewer = document.querySelector("model-viewer");
+
+window.switchSrc = (element, name) => {
+  const base = "assets/" + name;
+  modelViewer.src = base + '.glb';
+  modelViewer.poster = base + '.png';
+  const slides = document.querySelectorAll(".slide");
+  slides.forEach((element) => {element.classList.remove("selected");});
+  element.classList.add("selected");
+document.getElementById("audio").src=base + '.mp3';;
+};
+
+document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+  // Keep slider interactions from affecting the XR scene.
+  ev.preventDefault();
+});
+</script>
+
+<style>
+/* This keeps child nodes hidden while the element loads */
+:not(:defined) > * {
+  display: none;
+}
+
+model-viewer {
+  background-color: #eee;
+  overflow-x: hidden;
+  --poster-color: #eee;
+}
+
+#ar-button {
+  text-align: center;
+  margin:auto;
+display:block;
+  /* background-image: url(../../assets/ic_view_in_ar_new_googblue_48dp.png); */
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center top;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+    top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  bottom: 280px;
+  padding: 0px 16px 0px 16px;
+  font-family: Roboto Regular, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  color:#4285f4;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  border: 1px solid #DADCE0;
+}
+
+#ar-button:active {
+  background-color: #E8EAED;
+}
+
+#ar-button:focus {
+  outline: none;
+}
+
+#ar-button:focus-visible {
+  outline: 1px solid #4285f4;
+}
+
+@keyframes circle {
+  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+model-viewer > #ar-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 175px;
+  animation: elongate 2s infinite ease-in-out alternate;
+  display: none;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+  display: block;
+}
+
+model-viewer > #ar-prompt > img {
+  animation: circle 4s linear infinite;
+}
+
+.slider {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  bottom: 16px;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  margin-right: 10px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+}
+
+.slide.selected {
+  border: 2px solid #4285f4;
+}
+
+.slide:focus {
+  outline: none;
+}
+
+.slide:focus-visible {
+  outline: 1px solid #4285f4;
+}
+
+</style>
+</div>
+
+
+
+<!-- <div>
+  <model-viewer camera-controls
+  src="assets/banana.glb"
+  ar-scale="fixed"
+alt="A simple 3D model"
+data-js-focus-visible>
+<button slot=”hotspot-0” > <div id=”annotation”>This is the nucleus</div></button>
+</div>
+
+<div>
+<model-viewer  camera-controls
+src="assets/bread.glb"
+ar-scale="fixed"
+alt="A simple 3D model"
+data-js-focus-visible>
+<button slot=”hotspot”
+data-position="0.028201325271605182m 0.05935626184433801m 0.0755150135924163m"
+data-normal="0.0867343373757204m 0.6221708675679851m 0.7780620581095672m">
+<div id=”annotation”>This is the bread</div></button>
+</div> -->
+<footer>
+<details>
+  <summary>Credits</summary>
+  <p>"Streblognathus peetersi" (https://skfb.ly/6D7os) by Digital Archive of Natural History (DiNArDa) is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Ladybug" (https://skfb.ly/6XvRJ) by missamandapeur is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Octopus" (https://skfb.ly/6osFC) by Lukáš Marek is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+
+"pigeon  - 3dModel - Free" (https://skfb.ly/6SovL) by velvel is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Toad" (https://sketchfab.com/3d-models/toad-e9bae0fdbd614c7e94098a7c20e8706a) by denis_cliofas (https://sketchfab.com/denis_cliofas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+"Grasshopper" (https://sketchfab.com/3d-models/grasshopper-962827385d9c4f34bdeaceac611b678f) by Hilman Mauludin (https://sketchfab.com/hilmatrix) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+"Rabbit" (https://skfb.ly/CPE9) by Chaitanya Krishnan is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Swan" (https://sketchfab.com/3d-models/swan-235a884d0a314b0fb9a2b235c711cb8c) by ShapeLab (https://sketchfab.com/ShapeLab) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+"Medieval asset 21\ bat" (https://skfb.ly/69Kxo) by hamsterspit is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Toad" (https://sketchfab.com/3d-models/toad-e9bae0fdbd614c7e94098a7c20e8706a) by denis_cliofas (https://sketchfab.com/denis_cliofas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+ "Arion Rufus" (https://sketchfab.com/3d-models/arion-rufus-1777b0ce4ecb420193fe12f2cd597ebe) by Brandon Holt (https://sketchfab.com/BrandonHolt) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+"Dotted White Seal - Free Giveaway" (https://skfb.ly/6Bz7y) by Sketchfab Sucks is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Sympetrum striolatum" (https://sketchfab.com/3d-models/sympetrum-striolatum-1495a31b31984559ad9d02aadfd81837) by EvoBiomech (https://sketchfab.com/EvoBiomech) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+
+"Bee" (https://sketchfab.com/3d-models/bee-35bc73f735ba4e8b89057b2b86ba0f9b) by AyItzRay (https://sketchfab.com/raytheonpa) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+"Squirrel Mascot for the Art Squirrel Blog" (https://skfb.ly/6QYXw) by Christine is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Galapagos Turtle (VCU_3D_3799)" (https://sketchfab.com/3d-models/galapagos-turtle-vcu-3d-3799-0e9749aacd34496fac0a8e008f08bbdb) by Virtual Curation Lab (https://sketchfab.com/virtualcurationlab) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+"Great White Shark" (https://skfb.ly/6ADoX) by BlueMesh is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Stylized Fox" (https://skfb.ly/6SKPE) by Ida Faber is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"2017 Year of the Rooster" (https://skfb.ly/WQoU) by Sarath K is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+</p>
+</details>
+</footer>
+</body>
+
+
+</html>
