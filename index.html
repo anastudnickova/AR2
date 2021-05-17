@@ -40,44 +40,34 @@ View in AR
 
 <div class="slider">
   <div class="slides">
-    <button class="slide selected" onclick="switchSrc(this, &#39;mravenec&#39;)" style="background-image: url(&#39;assets/mravenec.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;mravenec&#39;)" style="background-image: url(&#39;assets/mravenec.png&#39;);">
+    <button class="slide selected" onclick="switchSrc(this, &#39;mravenec&#39;)" style="background-image: url(&#39;assets/mravenec.png&#39;);">
       <div class="translate">die Ameise</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;netopyr&#39;)" style="background-image: url(&#39;assets/netopyr.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;netopyr&#39;)" style="background-image: url(&#39;assets/netopyr.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;netopyr&#39;)" style="background-image: url(&#39;assets/netopyr.png&#39;);">
       <div class="translate">die Fledermaus</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;ropucha&#39;)" style="background-image: url(&#39;assets/ropucha.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;ropucha&#39;)" style="background-image: url(&#39;assets/ropucha.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;ropucha&#39;)" style="background-image: url(&#39;assets/ropucha.png&#39;);">
         <div class="translate">die Kröte</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;slimak&#39;)" style="background-image: url(&#39;assets/slimak.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;slimak&#39;)" style="background-image: url(&#39;assets/slimak.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;slimak&#39;)" style="background-image: url(&#39;assets/slimak.png&#39;);">
         <div class="translate">die Nacktschnecke</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;tulen&#39;)" style="background-image: url(&#39;assets/tulen.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;tulen&#39;)" style="background-image: url(&#39;assets/tulen.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;tulen&#39;)" style="background-image: url(&#39;assets/tulen.png&#39;);">
       <div class="translate">die Hundsrobbe</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;vazka&#39;)" style="background-image: url(&#39;assets/vazka.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;vazka&#39;)" style="background-image: url(&#39;assets/vazka.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;vazka&#39;)" style="background-image: url(&#39;assets/vazka.png&#39;);">
       <div class="translate">die Libelle</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;vcela&#39;)" style="background-image: url(&#39;assets/vcela.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;vcela&#39;)" style="background-image: url(&#39;assets/vcela.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;vcela&#39;)" style="background-image: url(&#39;assets/vcela.png&#39;);">
       <div class="translate">die Biene</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;veverka&#39;)" style="background-image: url(&#39;assets/veverka.png&#39;)"
-    ontouchstart="switchSrc(this, &#39;veverka&#39;)" style="background-image: url(&#39;assets/veverka.png&#39;)">
+    <button class="slide" onclick="switchSrc(this, &#39;veverka&#39;)" style="background-image: url(&#39;assets/veverka.png&#39;)">
         <div class="translate">das Eichhörnchen</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;zelva&#39;)" style="background-image: url(&#39;assets/zelva.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;zelva&#39;)" style="background-image: url(&#39;assets/zelva.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;zelva&#39;)" style="background-image: url(&#39;assets/zelva.png&#39;);">
             <div class="translate">die Schildkröte</div>
     </button>
-    <button class="slide" onclick="switchSrc(this, &#39;zralok&#39;)" style="background-image: url(&#39;assets/zralok.png&#39;);"
-    ontouchstart="switchSrc(this, &#39;zralok&#39;)" style="background-image: url(&#39;assets/zralok.png&#39;);">
+    <button class="slide" onclick="switchSrc(this, &#39;zralok&#39;)" style="background-image: url(&#39;assets/zralok.png&#39;);">
       <div class="translate">der Haifisch</div>
     </button>
 </div>
@@ -90,7 +80,7 @@ const modelViewer = document.querySelector("model-viewer");
 window.switchSrc = (element, name) => {
   const base = "assets/" + name;
   modelViewer.src = base + '.glb';
-  modelViewer.ios-src = base + '.usdz';
+  modelViewer.iosSrc = base + '.usdz';
   modelViewer.poster = base + '.png';
   const slides = document.querySelectorAll(".slide");
   slides.forEach((element) => {element.classList.remove("selected");});
